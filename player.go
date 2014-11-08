@@ -83,7 +83,7 @@ func (p *Player) HasTrackList() (bool, error) {
 }
 
 func (p *Player) Identity() (string, error) {
-	return "", fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetString(propIdentity)
 }
 
 func (p *Player) SupportedUriSchemes() ([]string, error) {
@@ -147,7 +147,7 @@ func (p *Player) SetPosition(path string, position int64) (int64, error) {
 }
 
 func (p *Player) PlaybackStatus() (string, error) {
-	return "", fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetString(propPlaybackStatus)
 }
 
 func (p *Player) Volume(volume ...float64) (float64, error) {
