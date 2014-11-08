@@ -163,7 +163,7 @@ func (p *Player) Unmute() error {
 }
 
 func (p *Player) Position() (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetInt64(propPosition)
 }
 
 func (p *Player) Aspect() (float64, error) {
@@ -171,19 +171,19 @@ func (p *Player) Aspect() (float64, error) {
 }
 
 func (p *Player) VideoStreamCount() (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetInt64(propVideoStreamCount)
 }
 
 func (p *Player) ResWidth() (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetInt64(propResWidth)
 }
 
 func (p *Player) ResHeight() (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetInt64(propResHeight)
 }
 
 func (p *Player) Duration() (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetInt64(propDuration)
 }
 
 func (p *Player) MinimumRate() (float64, error) {

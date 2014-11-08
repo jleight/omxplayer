@@ -14,6 +14,11 @@ func dbusGetBool(path string) (bool, error) {
 	return false, fmt.Errorf("omxplayer: %s not implemented yet", path)
 }
 
+// dbusGetInt64 calls a D-Bus method that will return an int64 value.
+func dbusGetInt64(path string) (int64, error) {
+	return 0, fmt.Errorf("omxplayer: %s not implemented yet", path)
+}
+
 // dbusGetString calls a D-Bus method that will return a string value.
 func dbusGetString(path string) (string, error) {
 	return "", fmt.Errorf("omxplayer: %s not implemented yet", path)
