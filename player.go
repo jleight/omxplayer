@@ -87,11 +87,11 @@ func (p *Player) Identity() (string, error) {
 }
 
 func (p *Player) SupportedUriSchemes() ([]string, error) {
-	return nil, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetStringArray(propSupportedUriSchemes)
 }
 
 func (p *Player) SupportedMimeTypes() ([]string, error) {
-	return nil, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetStringArray(propSupportedMimeTypes)
 }
 
 func (p *Player) CanGoNext() (bool, error) {
@@ -195,7 +195,7 @@ func (p *Player) MaximumRate() (float64, error) {
 }
 
 func (p *Player) ListSubtitles() ([]string, error) {
-	return nil, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetStringArray(cmdListSubtitles)
 }
 
 func (p *Player) HideVideo() error {
@@ -207,11 +207,11 @@ func (p *Player) UnHideVideo() error {
 }
 
 func (p *Player) ListAudio() ([]string, error) {
-	return nil, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetStringArray(cmdListAudio)
 }
 
 func (p *Player) ListVideo() ([]string, error) {
-	return nil, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetStringArray(cmdListVideo)
 }
 
 func (p *Player) SelectSubtitle(index int32) (bool, error) {

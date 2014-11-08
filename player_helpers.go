@@ -18,3 +18,8 @@ func dbusGetBool(path string) (bool, error) {
 func dbusGetString(path string) (string, error) {
 	return "", fmt.Errorf("omxplayer: not implemented yet")
 }
+
+// dbusGetStringArray calls a D-Bus method that will return a string array.
+func dbusGetStringArray(path string) ([]string, error) {
+	return nil, fmt.Errorf("omxplayer: not implemented yet")
+}
