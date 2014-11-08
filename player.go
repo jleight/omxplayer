@@ -1,7 +1,7 @@
 package omxplayer
 
 import (
-	"fmt"
+	log "github.com/Sirupsen/logrus"
 	"github.com/guelfey/go.dbus"
 )
 
@@ -141,11 +141,28 @@ func (p *Player) Stop() error {
 }
 
 func (p *Player) Seek(amount int64) (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	log.WithFields(log.Fields{
+		"path":        cmdSeek,
+		"paramAmount": amount,
+	}).Debug("omxplayer: dbus call")
+	call := p.bus.Call(cmdSeek, 0, amount)
+	if call.Err != nil {
+		return 0, call.Err
+	}
+	return call.Body[0].(int64), nil
 }
 
 func (p *Player) SetPosition(path string, position int64) (int64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	log.WithFields(log.Fields{
+		"path":          cmdSetPosition,
+		"paramPath":     path,
+		"paramPosition": position,
+	}).Debug("omxplayer: dbus call")
+	call := p.bus.Call(cmdSetPosition, 0, path, position)
+	if call.Err != nil {
+		return 0, call.Err
+	}
+	return call.Body[0].(int64), nil
 }
 
 func (p *Player) PlaybackStatus() (string, error) {
@@ -153,7 +170,18 @@ func (p *Player) PlaybackStatus() (string, error) {
 }
 
 func (p *Player) Volume(volume ...float64) (float64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	log.WithFields(log.Fields{
+		"path":        cmdVolume,
+		"paramVolume": volume,
+	}).Debug("omxplayer: dbus call")
+	if len(volume) == 0 {
+		return dbusGetFloat64(p.bus, cmdVolume)
+	}
+	call := p.bus.Call(cmdVolume, 0, volume[0])
+	if call.Err != nil {
+		return 0, call.Err
+	}
+	return call.Body[0].(float64), nil
 }
 
 func (p *Player) Mute() error {
@@ -217,11 +245,27 @@ func (p *Player) ListVideo() ([]string, error) {
 }
 
 func (p *Player) SelectSubtitle(index int32) (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	log.WithFields(log.Fields{
+		"path":       cmdSelectSubtitle,
+		"paramIndex": index,
+	}).Debug("omxplayer: dbus call")
+	call := p.bus.Call(cmdSelectSubtitle, 0, index)
+	if call.Err != nil {
+		return false, call.Err
+	}
+	return call.Body[0].(bool), nil
 }
 
 func (p *Player) SelectAudio(index int32) (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	log.WithFields(log.Fields{
+		"path":       cmdSelectAudio,
+		"paramIndex": index,
+	}).Debug("omxplayer: dbus call")
+	call := p.bus.Call(cmdSelectAudio, 0, index)
+	if call.Err != nil {
+		return false, call.Err
+	}
+	return call.Body[0].(bool), nil
 }
 
 func (p *Player) ShowSubtitles() error {
@@ -233,5 +277,9 @@ func (p *Player) HideSubtitles() error {
 }
 
 func (p *Player) Action(action int32) error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	log.WithFields(log.Fields{
+		"path":        cmdAction,
+		"paramAction": action,
+	}).Debug("omxplayer: dbus call")
+	return p.bus.Call(cmdAction, 0, action).Err
 }
