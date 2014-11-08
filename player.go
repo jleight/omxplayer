@@ -63,23 +63,23 @@ func (p *Player) Quit() error {
 }
 
 func (p *Player) CanQuit() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanQuit)
 }
 
 func (p *Player) Fullscreen() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propFullscreen)
 }
 
 func (p *Player) CanSetFullscreen() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanSetFullscreen)
 }
 
 func (p *Player) CanRaise() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanRaise)
 }
 
 func (p *Player) HasTrackList() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propHasTrackList)
 }
 
 func (p *Player) Identity() (string, error) {
@@ -95,27 +95,27 @@ func (p *Player) SupportedMimeTypes() ([]string, error) {
 }
 
 func (p *Player) CanGoNext() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanGoNext)
 }
 
 func (p *Player) CanGoPrevious() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanGoPrevious)
 }
 
 func (p *Player) CanSeek() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(cmdSeek)
 }
 
 func (p *Player) CanControl() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanControl)
 }
 
 func (p *Player) CanPlay() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanPlay)
 }
 
 func (p *Player) CanPause() (bool, error) {
-	return false, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetBool(propCanPause)
 }
 
 func (p *Player) Next() error {
