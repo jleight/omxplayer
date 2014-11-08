@@ -59,7 +59,7 @@ type Player struct {
 }
 
 func (p *Player) Quit() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdQuit)
 }
 
 func (p *Player) CanQuit() (bool, error) {
@@ -119,23 +119,23 @@ func (p *Player) CanPause() (bool, error) {
 }
 
 func (p *Player) Next() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdNext)
 }
 
 func (p *Player) Previous() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdPrevious)
 }
 
 func (p *Player) Pause() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdPause)
 }
 
 func (p *Player) PlayPause() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdPlayPause)
 }
 
 func (p *Player) Stop() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdStop)
 }
 
 func (p *Player) Seek(amount int64) (int64, error) {
@@ -155,11 +155,11 @@ func (p *Player) Volume(volume ...float64) (float64, error) {
 }
 
 func (p *Player) Mute() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdMute)
 }
 
 func (p *Player) Unmute() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdUnmute)
 }
 
 func (p *Player) Position() (int64, error) {
@@ -199,11 +199,11 @@ func (p *Player) ListSubtitles() ([]string, error) {
 }
 
 func (p *Player) HideVideo() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdHideVideo)
 }
 
 func (p *Player) UnHideVideo() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdUnHideVideo)
 }
 
 func (p *Player) ListAudio() ([]string, error) {
@@ -223,11 +223,11 @@ func (p *Player) SelectAudio(index int32) (bool, error) {
 }
 
 func (p *Player) ShowSubtitles() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdShowSubtitles)
 }
 
 func (p *Player) HideSubtitles() error {
-	return fmt.Errorf("omxplayer: not implemented yet")
+	return dbusCall(cmdHideSubtitles)
 }
 
 func (p *Player) Action(action int32) error {
