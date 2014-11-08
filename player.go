@@ -4,6 +4,57 @@ import (
 	"fmt"
 )
 
+const (
+	ifaceProps     = "org.freedesktop.DBus.Properties"
+	ifaceOmxRoot   = ifaceMpris
+	ifaceOmxPlayer = ifaceOmxRoot + ".Player"
+
+	cmdQuit                 = ifaceOmxRoot + ".Quit"
+	propCanQuit             = ifaceProps + ".CanQuit"
+	propFullscreen          = ifaceProps + ".Fullscreen"
+	propCanSetFullscreen    = ifaceProps + ".CanSetFullscreen"
+	propCanRaise            = ifaceProps + ".CanRaise"
+	propHasTrackList        = ifaceProps + ".HasTrackList"
+	propIdentity            = ifaceProps + ".Identity"
+	propSupportedUriSchemes = ifaceProps + ".SupportedUriSchemes"
+	propSupportedMimeTypes  = ifaceProps + ".SupportedMimeTypes"
+	propCanGoNext           = ifaceProps + ".CanGoNext"
+	propCanGoPrevious       = ifaceProps + ".CanGoPrevious"
+	propCanSeek             = ifaceProps + ".CanSeek"
+	propCanControl          = ifaceProps + ".CanControl"
+	propCanPlay             = ifaceProps + ".CanPlay"
+	propCanPause            = ifaceProps + ".CanPause"
+	cmdNext                 = ifaceOmxPlayer + ".Next"
+	cmdPrevious             = ifaceOmxPlayer + ".Previous"
+	cmdPause                = ifaceOmxPlayer + ".Pause"
+	cmdPlayPause            = ifaceOmxPlayer + ".PlayPause"
+	cmdStop                 = ifaceOmxPlayer + ".Stop"
+	cmdSeek                 = ifaceOmxPlayer + ".Seek"
+	cmdSetPosition          = ifaceOmxPlayer + ".SetPosition"
+	propPlaybackStatus      = ifaceProps + ".PlaybackStatus"
+	cmdVolume               = ifaceProps + ".Volume"
+	cmdMute                 = ifaceProps + ".Mute"
+	cmdUnmute               = ifaceProps + ".Unmute"
+	propPosition            = ifaceProps + ".Position"
+	propAspect              = ifaceProps + ".Aspect"
+	propVideoStreamCount    = ifaceProps + ".VideoStreamCount"
+	propResWidth            = ifaceProps + ".ResWidth"
+	propResHeight           = ifaceProps + ".ResHeight"
+	propDuration            = ifaceProps + ".Duration"
+	propMinimumRate         = ifaceProps + ".MinimumRate"
+	propMaximumRate         = ifaceProps + ".MaximumRate"
+	cmdListSubtitles        = ifaceOmxPlayer + ".ListSubtitles"
+	cmdHideVideo            = ifaceOmxPlayer + ".HideVideo"
+	cmdUnHideVideo          = ifaceOmxPlayer + ".UnHideVideo"
+	cmdListAudio            = ifaceOmxPlayer + ".ListAudio"
+	cmdListVideo            = ifaceOmxPlayer + ".ListVideo"
+	cmdSelectSubtitle       = ifaceOmxPlayer + ".SelectSubtitle"
+	cmdSelectAudio          = ifaceOmxPlayer + ".SelectAudio"
+	cmdShowSubtitles        = ifaceOmxPlayer + ".ShowSubtitles"
+	cmdHideSubtitles        = ifaceOmxPlayer + ".HideSubtitles"
+	cmdAction               = ifaceOmxPlayer + ".Action"
+)
+
 type Player struct {
 }
 

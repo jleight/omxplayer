@@ -7,6 +7,7 @@ import (
 const (
 	prefixOmxDbusFiles = "/tmp/omxplayerdbus."
 	suffixOmxDbusPid   = ".pid"
+	ifaceMpris         = "org.mpris.MediaPlayer2"
 )
 
 var (
