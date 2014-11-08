@@ -167,7 +167,7 @@ func (p *Player) Position() (int64, error) {
 }
 
 func (p *Player) Aspect() (float64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetFloat64(propAspect)
 }
 
 func (p *Player) VideoStreamCount() (int64, error) {
@@ -187,11 +187,11 @@ func (p *Player) Duration() (int64, error) {
 }
 
 func (p *Player) MinimumRate() (float64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetFloat64(propMinimumRate)
 }
 
 func (p *Player) MaximumRate() (float64, error) {
-	return 0, fmt.Errorf("omxplayer: not implemented yet")
+	return dbusGetFloat64(propMaximumRate)
 }
 
 func (p *Player) ListSubtitles() ([]string, error) {
