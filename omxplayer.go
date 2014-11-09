@@ -7,6 +7,9 @@ import (
 )
 
 const (
+	envDisplay         = "DISPLAY"
+	envDbusAddress     = "DBUS_SESSION_BUS_ADDRESS"
+	envDbusPid         = "DBUS_SESSION_BUS_PID"
 	prefixOmxDbusFiles = "/tmp/omxplayerdbus."
 	suffixOmxDbusPid   = ".pid"
 	ifaceMpris         = "org.mpris.MediaPlayer2"
@@ -88,5 +91,27 @@ func getDbusConnection(path, pid string) (conn *dbus.Conn, err error) {
 
 	log.Debug("omxplayer: initializing dbus session")
 	err = conn.Hello()
+	return
+}
+
+// setupDbusEnvironment sets the environment variables that are necessary to
+// establish a D-Bus connection. If the connection's path or PID cannot be read,
+// the associated error is returned.
+func setupDbusEnvironment() (err error) {
+	log.Debug("omxplayer: setting up dbus environment")
+
+	path, err := getDbusPath()
+	if err != nil {
+		return
+	}
+
+	pid, err := getDbusPid()
+	if err != nil {
+		return
+	}
+
+	setEnv(envDisplay, ":0")
+	setEnv(envDbusAddress, path)
+	setEnv(envDbusPid, pid)
 	return
 }
