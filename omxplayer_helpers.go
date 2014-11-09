@@ -3,7 +3,9 @@ package omxplayer
 import (
 	"fmt"
 	log "github.com/Sirupsen/logrus"
+	"io/ioutil"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -30,4 +32,25 @@ func waitForFile(path string) error {
 		time.Sleep(50 * time.Millisecond)
 	}
 	return fmt.Errorf("omxplayer: file does not exist: %s", path)
+}
+
+// readFile waits for the specified file to contain contents, and then returns
+// those contents as a string. If an error occurs while reading the file, the
+// error is returned. If the file has no content after 100 attempts, an error is
+// returned.
+func readFile(path string) (string, error) {
+	log.WithFields(log.Fields{
+		"file": path,
+	}).Debug("omxplayer: reading file")
+	for i := 0; i < 100; i++ {
+		bytes, err := ioutil.ReadFile(path)
+		if err != nil {
+			return "", err
+		}
+		if len(bytes) > 0 {
+			return strings.TrimSpace(string(bytes)), err
+		}
+		time.Sleep(50 * time.Millisecond)
+	}
+	return "", fmt.Errorf("omxplayer: file is empty: %s", path)
 }
