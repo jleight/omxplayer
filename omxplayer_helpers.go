@@ -54,3 +54,12 @@ func readFile(path string) (string, error) {
 	}
 	return "", fmt.Errorf("omxplayer: file is empty: %s", path)
 }
+
+// setEnv sets the specified environment variable to the specified value.
+func setEnv(variable, value string) {
+	log.WithFields(log.Fields{
+		"variable": variable,
+		"value":    value,
+	}).Debug("omxplayer: setting environment variable")
+	os.Setenv(variable, value)
+}
