@@ -4,6 +4,8 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/guelfey/go.dbus"
 	"os"
+	"os/exec"
+	"strings"
 )
 
 const (
@@ -13,6 +15,8 @@ const (
 	prefixOmxDbusFiles = "/tmp/omxplayerdbus."
 	suffixOmxDbusPid   = ".pid"
 	ifaceMpris         = "org.mpris.MediaPlayer2"
+	exeOxmPlayer       = "omxplayer"
+	keyPause           = "p"
 )
 
 var (
@@ -113,5 +117,16 @@ func setupDbusEnvironment() (err error) {
 	setEnv(envDisplay, ":0")
 	setEnv(envDbusAddress, path)
 	setEnv(envDbusPid, pid)
+	return
+}
+
+// execOmxplayer starts a new OMXPlayer process and tells it to pause the video
+// by passing a "p" on standard input.
+func execOmxplayer(url string) (cmd *exec.Cmd, err error) {
+	log.Debug("omxplayer: starting omxplayer process")
+
+	cmd = exec.Command(exeOxmPlayer, "--no-osd", url)
+	cmd.Stdin = strings.NewReader(keyPause)
+	err = cmd.Start()
 	return
 }
