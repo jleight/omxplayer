@@ -72,12 +72,13 @@ func getDbusPid() (string, error) {
 	return readFile(fileOmxDbusPid)
 }
 
-// getDbusConnection establishes and returns a D-Bus connection to the specified
-// D-Bus path with the specified given D-Bus PID. Since the connection's `Auth`
-// method attempts to use Go's `os/user` package to get the current user's name
-// and home directory, and `os/user` is not implemented for Linux-ARM, the
-// `authMethods` parameter is specified explicitly rather than passing `nil`.
-func getDbusConnection(path, pid string) (conn *dbus.Conn, err error) {
+// getDbusConnection establishes and returns a D-Bus connection. The connection
+// is made to the D-Bus service that has been set via the two `DBUS_*`
+// environment variables. Since the connection's `Auth` method attempts to use
+// Go's `os/user` package to get the current user's name and home directory, and
+// `os/user` is not implemented for Linux-ARM, the `authMethods` parameter is
+// specified explicitly rather than passing `nil`.
+func getDbusConnection() (conn *dbus.Conn, err error) {
 	authMethods := []dbus.Auth{
 		dbus.AuthExternal(user),
 		dbus.AuthCookieSha1(user, home),
