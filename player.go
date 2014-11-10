@@ -3,6 +3,7 @@ package omxplayer
 import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/guelfey/go.dbus"
+	"os/exec"
 )
 
 const (
@@ -57,7 +58,9 @@ const (
 )
 
 type Player struct {
-	bus *dbus.Object
+	command    *exec.Cmd
+	connection *dbus.Conn
+	bus        *dbus.Object
 }
 
 func (p *Player) Quit() error {
