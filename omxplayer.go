@@ -14,7 +14,9 @@ const (
 	envDbusPid         = "DBUS_SESSION_BUS_PID"
 	prefixOmxDbusFiles = "/tmp/omxplayerdbus."
 	suffixOmxDbusPid   = ".pid"
+	pathMpris          = "/org/mpris/MediaPlayer2"
 	ifaceMpris         = "org.mpris.MediaPlayer2"
+	ifaceOmx           = ifaceMpris + ".omxplayer"
 	exeOxmPlayer       = "omxplayer"
 	keyPause           = "p"
 )
@@ -41,6 +43,27 @@ func SetUser(u, h string) {
 // instance that is playing the video located at the specified URL.
 func New(url string) (player *Player, err error) {
 	removeDbusFiles()
+
+	cmd, err := execOmxplayer(url)
+	if err != nil {
+		return
+	}
+
+	err = setupDbusEnvironment()
+	if err != nil {
+		return
+	}
+
+	conn, err := getDbusConnection()
+	if err != nil {
+		return
+	}
+
+	player = &Player{
+		command:    cmd,
+		connection: conn,
+		bus:        conn.Object(ifaceOmx, pathMpris),
+	}
 	return
 }
 
