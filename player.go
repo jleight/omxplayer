@@ -61,6 +61,20 @@ type Player struct {
 	command    *exec.Cmd
 	connection *dbus.Conn
 	bus        *dbus.Object
+	ready      bool
+}
+
+// IsReady checks to see if the Player instance is ready to accept D-Bus
+// commands. If the player is ready and can accept commands, the function
+// returns true, otherwise it returns false.
+func (p *Player) IsReady() bool {
+	if p.ready {
+		return true
+	}
+
+	_, err := p.CanQuit()
+	p.ready = err != nil
+	return p.ready
 }
 
 func (p *Player) Quit() error {
