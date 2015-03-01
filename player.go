@@ -4,6 +4,7 @@ import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/guelfey/go.dbus"
 	"os/exec"
+	"time"
 )
 
 const (
@@ -75,6 +76,14 @@ func (p *Player) IsReady() bool {
 	_, err := p.CanQuit()
 	p.ready = err != nil
 	return p.ready
+}
+
+// WaitForReady waits until the Player instance is ready to accept D-Bus
+// commands and then returns.
+func (p *Player) WaitForReady() {
+	for !p.IsReady() {
+		time.Sleep(50 * time.Millisecond)
+	}
 }
 
 func (p *Player) Quit() error {
