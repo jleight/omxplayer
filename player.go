@@ -3,7 +3,9 @@ package omxplayer
 import (
 	log "github.com/Sirupsen/logrus"
 	"github.com/guelfey/go.dbus"
+	"os"
 	"os/exec"
+	"syscall"
 	"time"
 )
 
@@ -63,6 +65,19 @@ type Player struct {
 	connection *dbus.Conn
 	bus        *dbus.Object
 	ready      bool
+}
+
+// IsRunning checks to see if the OMXPlayer process is running. If it is, the
+// function returns true, otherwise it returns false.
+func (p *Player) IsRunning() bool {
+	pid := p.command.Process.Pid
+	process, err := os.FindProcess(pid)
+	if err != nil {
+		return false
+	} else {
+		err = process.Signal(syscall.Signal(0))
+		return err != nil
+	}
 }
 
 // IsReady checks to see if the Player instance is ready to accept D-Bus
