@@ -1,3 +1,5 @@
+// Package omxplayer is a simple library for controlling the omxplayer
+// application on your Raspberry Pi from Go.
 package omxplayer
 
 import (
