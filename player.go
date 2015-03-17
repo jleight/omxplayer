@@ -75,10 +75,10 @@ func (p *Player) IsRunning() bool {
 	process, err := os.FindProcess(pid)
 	if err != nil {
 		return false
-	} else {
-		err = process.Signal(syscall.Signal(0))
-		return err != nil
 	}
+
+	err = process.Signal(syscall.Signal(0))
+	return err != nil
 }
 
 // IsReady checks to see if the Player instance is ready to accept D-Bus
