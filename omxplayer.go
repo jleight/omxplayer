@@ -34,10 +34,10 @@ func init() {
 	SetUser(os.Getenv("USER"), os.Getenv("HOME"))
 }
 
-// Sets the username (u) and home directory (h) of the user that new omxplayer
-// processes will be running as. This does not change which user the processes
-// will be spawned as, it is just used to find the correct D-Bus configuration
-// file after a new process has been started.
+// SetUser sets the username (u) and home directory (h) of the user that new
+// omxplayer processes will be running as. This does not change which user the
+// processes will be spawned as, it is just used to find the correct D-Bus
+// configuration file after a new process has been started.
 func SetUser(u, h string) {
 	user = u
 	home = h
