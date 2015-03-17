@@ -101,7 +101,7 @@ time to buffer the video before playing it, so this library starts the omxplayer
 instance and immediately pauses it.
 
 Sometimes it takes a while (a few hundred milliseconds) for omxplayer to write
-it's D-Bus information to a file. As a precaution, this library includes both an
+its D-Bus information to a file. As a precaution, this library includes both an
 `IsReady` and `WaitForReady` method. These can be used to check if the `Player`
 instance is ready to start accepting D-Bus commands, or to wait until the
 `Player` is ready, respectively. It is recommended that you either make sure
