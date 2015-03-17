@@ -21,7 +21,7 @@ const (
 	propCanRaise            = ifaceProps + ".CanRaise"
 	propHasTrackList        = ifaceProps + ".HasTrackList"
 	propIdentity            = ifaceProps + ".Identity"
-	propSupportedUriSchemes = ifaceProps + ".SupportedUriSchemes"
+	propSupportedURISchemes = ifaceProps + ".SupportedUriSchemes"
 	propSupportedMimeTypes  = ifaceProps + ".SupportedMimeTypes"
 	propCanGoNext           = ifaceProps + ".CanGoNext"
 	propCanGoPrevious       = ifaceProps + ".CanGoPrevious"
@@ -146,9 +146,9 @@ func (p *Player) Identity() (string, error) {
 	return dbusGetString(p.bus, propIdentity)
 }
 
-// SupportedUriSchemes returns a list of playable URI formats. See
+// SupportedURISchemes returns a list of playable URI formats. See
 // https://github.com/popcornmix/omxplayer#supportedurischemes for more details.
-func (p *Player) SupportedUriSchemes() ([]string, error) {
+func (p *Player) SupportedURISchemes() ([]string, error) {
 	return dbusGetStringArray(p.bus, propSupportedUriSchemes)
 }
 
