@@ -149,7 +149,7 @@ func (p *Player) Identity() (string, error) {
 // SupportedURISchemes returns a list of playable URI formats. See
 // https://github.com/popcornmix/omxplayer#supportedurischemes for more details.
 func (p *Player) SupportedURISchemes() ([]string, error) {
-	return dbusGetStringArray(p.bus, propSupportedUriSchemes)
+	return dbusGetStringArray(p.bus, propSupportedURISchemes)
 }
 
 // SupportedMimeTypes returns a list of supported MIME types. See
