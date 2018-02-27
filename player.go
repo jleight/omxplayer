@@ -89,8 +89,10 @@ func (p *Player) IsReady() bool {
 		return true
 	}
 
-	_, err := p.CanQuit()
-	p.ready = err != nil
+	verdict, err := p.CanQuit()
+	if err==nil && verdict {
+		p.ready = true
+	}
 	return p.ready
 }
 
