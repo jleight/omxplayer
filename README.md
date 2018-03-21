@@ -92,7 +92,7 @@ application, you can use it to start up a new instance of omxplayer, providing a
 path to the file you would like to play:
 
 ```go
-player, err := omxplayer.New("/path/to/video.mp4")
+player, err := omxplayer.New("/path/to/video.mp4", "--no-osd")
 ```
 
 This will start a new omxplayer process that will play the specified video file.
@@ -121,7 +121,7 @@ Here's an example to bring it all together:
 
 ```go
 omxplayer.SetUser("root", "/root")
-player, err := omxplayer.New("/root/testvideo.mp4")
+player, err := omxplayer.New("/root/testvideo.mp4", "--no-osd")
 
 player.WaitForReady()
 err = player.PlayPause()
