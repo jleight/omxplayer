@@ -48,10 +48,10 @@ func SetUser(u, h string) {
 
 // New returns a new Player instance that can be used to control an OMXPlayer
 // instance that is playing the video located at the specified URL.
-func New(url string, arg ...string) (player *Player, err error) {
+func New(url string, args ...string) (player *Player, err error) {
 	removeDbusFiles()
 
-	cmd, err := execOmxplayer(url, arg...)
+	cmd, err := execOmxplayer(url, args...)
 	if err != nil {
 		return
 	}
@@ -153,11 +153,12 @@ func setupDbusEnvironment() (err error) {
 
 // execOmxplayer starts a new OMXPlayer process and tells it to pause the video
 // by passing a "p" on standard input.
-func execOmxplayer(url string, arg ...string) (cmd *exec.Cmd, err error) {
+func execOmxplayer(url string, args ...string) (cmd *exec.Cmd, err error) {
 	log.Debug("omxplayer: starting omxplayer process")
 
-	arg = append(arg, url)
-	cmd = exec.Command(exeOxmPlayer, arg...)
+	args = append(args, url)
+
+	cmd = exec.Command(exeOxmPlayer, args...)
 	cmd.Stdin = strings.NewReader(keyPause)
 	err = cmd.Start()
 	return
