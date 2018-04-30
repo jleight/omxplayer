@@ -3,11 +3,12 @@
 package omxplayer
 
 import (
-	log "github.com/Sirupsen/logrus"
-	"github.com/guelfey/go.dbus"
 	"os"
 	"os/exec"
 	"strings"
+
+	log "github.com/Sirupsen/logrus"
+	dbus "github.com/guelfey/go.dbus"
 )
 
 const (

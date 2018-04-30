@@ -1,12 +1,13 @@
 package omxplayer
 
 import (
-	log "github.com/Sirupsen/logrus"
-	"github.com/guelfey/go.dbus"
 	"os"
 	"os/exec"
 	"syscall"
 	"time"
+
+	log "github.com/Sirupsen/logrus"
+	dbus "github.com/guelfey/go.dbus"
 )
 
 const (
@@ -90,7 +91,7 @@ func (p *Player) IsReady() bool {
 	}
 
 	verdict, err := p.CanQuit()
-	if err==nil && verdict {
+	if err == nil && verdict {
 		p.ready = true
 	}
 	return p.ready

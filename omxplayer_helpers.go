@@ -2,11 +2,12 @@ package omxplayer
 
 import (
 	"fmt"
-	log "github.com/Sirupsen/logrus"
 	"io/ioutil"
 	"os"
 	"strings"
 	"time"
+
+	log "github.com/Sirupsen/logrus"
 )
 
 // removeFile removes the specified file. Errors are ignored.

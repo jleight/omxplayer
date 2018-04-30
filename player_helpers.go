@@ -2,7 +2,7 @@ package omxplayer
 
 import (
 	log "github.com/Sirupsen/logrus"
-	"github.com/guelfey/go.dbus"
+	dbus "github.com/guelfey/go.dbus"
 )
 
 // dbusCall calls a D-Bus method that has no return value.
