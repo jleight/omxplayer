@@ -6,8 +6,8 @@ import (
 	"syscall"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
 	dbus "github.com/guelfey/go.dbus"
+	log "github.com/sirupsen/logrus"
 )
 
 const (
