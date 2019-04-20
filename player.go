@@ -251,7 +251,7 @@ func (p *Player) SetPosition(path string, position int64) (int64, error) {
 		"paramPath":     path,
 		"paramPosition": position,
 	}).Debug("omxplayer: dbus call")
-	call := p.bus.Call(cmdSetPosition, 0, path, position)
+	call := p.bus.Call(cmdSetPosition, 0, dbus.ObjectPath(path), position)
 	if call.Err != nil {
 		return 0, call.Err
 	}
