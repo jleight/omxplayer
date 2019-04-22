@@ -1,6 +1,6 @@
 language: go
 go:
-  - release
-  - tip
+  - stable
+  - master
 install:
   - go get -t ./...
