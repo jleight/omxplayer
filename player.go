@@ -33,6 +33,7 @@ const (
 	cmdNext                 = ifaceOmxPlayer + ".Next"
 	cmdPrevious             = ifaceOmxPlayer + ".Previous"
 	cmdPause                = ifaceOmxPlayer + ".Pause"
+	cmdPlay                 = ifaceOmxPlayer + ".Play"
 	cmdPlayPause            = ifaceOmxPlayer + ".PlayPause"
 	cmdStop                 = ifaceOmxPlayer + ".Stop"
 	cmdSeek                 = ifaceOmxPlayer + ".Seek"
@@ -215,6 +216,13 @@ func (p *Player) Previous() error {
 // https://github.com/popcornmix/omxplayer#pause for more details.
 func (p *Player) Pause() error {
 	return dbusCall(p.bus, cmdPause)
+}
+
+// Play play the video. If the video is playing, it has no effect,
+// if it is paused it will play from current position.
+// See https://github.com/popcornmix/omxplayer#play for more details.
+func (p *Player) Play() error {
+	return dbusCall(p.bus, cmdPlay)
 }
 
 // PlayPause pauses the player if it is playing. Otherwise, it resumes playback.
